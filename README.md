@@ -1,5 +1,7 @@
 # Rails::Jquery::Validation
 
+[![Build Status](https://travis-ci.org/amos-erp/rails-jquery-validation.svg)](https://travis-ci.org/amos-erp/rails-jquery-validation)
+
 **NOTE:** This gem is in an early alpha state and a lot of validations are missing. They will be added time after time.
 
 This gem adds the according data-rule-x attributes to your rails form, according to your active record validations, including translations.
@@ -18,7 +20,7 @@ And then execute:
 
     $ bundle
 
-### dependencies
+### Dependencies
 
 * jQuery Version: https://github.com/jzaefferer/jquery-validation/blob/master/bower.json#L28
 * jQuery Validation Plugin: https://github.com/jzaefferer/jquery-validation/#including-it-on-your-page
@@ -125,7 +127,8 @@ If you have your own custom validator, the only thing you have to do is to inclu
 
 ````ruby
 module MyNameSpace
-	module MyPresenceValidator
+	module MyPresenceValidator < ActiveModel::Validator
+    # ... def validate(record)
 		def prepare_jquery_validation_rules(validation_rules, record, attribute, form_options, field_options)
 			validation_rules[:rule_required] = true
 			validation_rules[:msg_required] = record.errors.full_message(attribute, record.errors.generate_message(attribute, :blank))
@@ -163,7 +166,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/amos-erp/rails-jquery-validation. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/amos-erp/rails-jquery-validation. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
